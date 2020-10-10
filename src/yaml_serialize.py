@@ -1,3 +1,6 @@
+import yaml
+
+
 class Serialize:
     def __init__(self, object):
         self.object = object
@@ -7,5 +10,8 @@ class Serialize:
 
 
 class YamlDump:
-    def __init__(self, serialize_object):
+    def __init__(self, serialize_object, outfile):
         self.serialize_object = serialize_object
+
+    def generate_yaml(self):
+        return yaml.dump(self.serialize_object)
