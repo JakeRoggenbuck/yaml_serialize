@@ -14,6 +14,7 @@ serializer = yaml_serialize.Serialize(my_object)
 
 # Get serialized object as string
 my_serialized_object = serializer.get()
+print(my_serialized_object)
 
 # Write serialized object with class name "MyObject.yml"
 serializer.write()

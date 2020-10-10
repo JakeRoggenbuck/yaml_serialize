@@ -16,7 +16,9 @@ class YamlDump:
 
     def generate_yaml(self):
         """Generate yaml string from object_dict"""
-        return yaml.dump(self.object_dict)
+        myyaml = yaml.dump(self.object_dict)
+        myyaml = myyaml[myyaml.find("\n")+2:]
+        return myyaml
 
     def write_file(self, outfile: str):
         with open(outfile, "w") as file:
