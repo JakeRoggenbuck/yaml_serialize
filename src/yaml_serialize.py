@@ -30,7 +30,7 @@ class Serialize:
 
     def generate_name(self, name: str = False):
         if name is False:
-            return self.object_to_serialize.__class__.__name__
+            return self.object_to_serialize.__class__.__name__ + ".yml"
         else:
             return name
 

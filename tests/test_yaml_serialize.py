@@ -51,7 +51,7 @@ class TestSerialize:
 
     def test_generate_name(self):
         ser = yaml_serialize.Serialize(self.myclass)
-        assert ser.generate_name() == "MyClass"
+        assert ser.generate_name() == "MyClass.yml"
 
         ser = yaml_serialize.Serialize(self.myclass)
         assert ser.generate_name("MyName") == "MyName"
@@ -59,11 +59,11 @@ class TestSerialize:
     def test_wtite(self):
         ser = yaml_serialize.Serialize(self.myclass)
         assert isinstance(ser.write(), int)
-        os.remove("MyClass")
+        os.remove("MyClass.yml")
 
         ser = yaml_serialize.Serialize(self.myclass)
-        assert isinstance(ser.write("MyName"), int)
-        os.remove("MyName")
+        assert isinstance(ser.write("MyName.yml"), int)
+        os.remove("MyName.yml")
 
     def test_get(self):
         ser = yaml_serialize.Serialize(self.myclass)
