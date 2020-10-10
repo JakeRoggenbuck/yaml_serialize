@@ -28,7 +28,6 @@ serializer.write("MyCoolObject.yml")
 
 ## Output
 ```yml
-!!python/object:src.yaml_serialize.ObjectDict
 _object: !!python/object:__main__.MyObject
   age: 16
   favorite_color: Green
