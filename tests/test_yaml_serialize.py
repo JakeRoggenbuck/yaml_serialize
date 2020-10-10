@@ -31,9 +31,14 @@ class TestYamlDump:
 
     def test_yaml_dump_attrs(self):
         assert hasattr(self.yaml_dump, "serialize_object")
+        assert hasattr(self.yaml_dump, "outfile")
 
     def test_generate_yaml(self):
         yaml = self.yaml_dump.generate_yaml()
         assert isinstance(yaml, str)
         assert "name" in yaml
         assert "myclass" in yaml
+
+    def test_write_file(self):
+        write = self.yaml_dump.write_file()
+        assert isinstance(write, int)
