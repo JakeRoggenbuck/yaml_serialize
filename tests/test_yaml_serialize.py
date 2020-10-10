@@ -1,3 +1,4 @@
+import os
 import yaml_serialize
 
 
@@ -27,11 +28,10 @@ class TestYamlDump:
     def setup_method(self):
         myclass = MyClass()
         object_dict = yaml_serialize.ObjectDict(myclass).get_attrs()
-        self.yaml_dump = yaml_serialize.YamlDump(object_dict, "file")
+        self.yaml_dump = yaml_serialize.YamlDump(object_dict)
 
     def test_yaml_dump_attrs(self):
         assert hasattr(self.yaml_dump, "object_dict")
-        assert hasattr(self.yaml_dump, "outfile")
 
     def test_generate_yaml(self):
         yaml = self.yaml_dump.generate_yaml()
@@ -40,8 +40,9 @@ class TestYamlDump:
         assert "myclass" in yaml
 
     def test_write_file(self):
-        write = self.yaml_dump.write_file()
+        write = self.yaml_dump.write_file("TEST_file")
         assert isinstance(write, int)
+        os.remove("TEST_file")
 
 
 class TestSerialize:
@@ -51,8 +52,20 @@ class TestSerialize:
     def test_generate_name(self):
         ser = yaml_serialize.Serialize(self.myclass)
         assert ser.generate_name() == "MyClass"
-        assert ser.name == "MyClass"
 
-        ser = yaml_serialize.Serialize(self.myclass, "MyName")
-        assert ser.generate_name() == "MyName"
-        assert ser.name == "MyName"
+        ser = yaml_serialize.Serialize(self.myclass)
+        assert ser.generate_name("MyName") == "MyName"
+
+    def test_wtite(self):
+        ser = yaml_serialize.Serialize(self.myclass)
+        assert isinstance(ser.write(), int)
+        os.remove("MyClass")
+
+        ser = yaml_serialize.Serialize(self.myclass)
+        assert isinstance(ser.write("MyName"), int)
+        os.remove("MyName")
+
+    def test_get(self):
+        ser = yaml_serialize.Serialize(self.myclass)
+        yaml = ser.get()
+        assert isinstance(yaml, str)
