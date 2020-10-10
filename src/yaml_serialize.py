@@ -1,7 +1,7 @@
 import yaml
 
 
-class Serialize:
+class Object:
     def __init__(self, object):
         self.object = object
 

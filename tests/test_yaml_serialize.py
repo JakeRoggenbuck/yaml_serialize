@@ -6,14 +6,14 @@ class MyClass:
         self.name = "myclass"
 
 
-class TestSerialize:
+class TestObject:
     def setup_method(self):
         myclass = MyClass()
-        self.ser = yaml_serialize.Serialize(myclass)
+        self.ser = yaml_serialize.Object(myclass)
 
     def test_serialize_exist(self):
         myclass = MyClass()
-        yaml_serialize.Serialize(myclass)
+        yaml_serialize.Object(myclass)
 
     def test_serialize_attrs(self):
         assert hasattr(self.ser, "object")
@@ -26,7 +26,7 @@ class TestSerialize:
 class TestYamlDump:
     def setup_method(self):
         myclass = MyClass()
-        serialize_object = yaml_serialize.Serialize(myclass).get_attrs()
+        serialize_object = yaml_serialize.Object(myclass).get_attrs()
         self.yaml_dump = yaml_serialize.YamlDump(serialize_object, "file")
 
     def test_yaml_dump_attrs(self):
