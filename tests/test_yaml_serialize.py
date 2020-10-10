@@ -19,5 +19,15 @@ class TestSerialize:
         assert hasattr(self.ser, "object")
 
     def test_get_attrs(self):
-        assert isinstance(self.ser.list_attrs(), dict)
-        assert self.ser.list_attrs().get("name") == "myclass"
+        assert isinstance(self.ser.get_attrs(), dict)
+        assert self.ser.get_attrs().get("name") == "myclass"
+
+
+class TestYamlDump:
+    def setup_method(self):
+        myclass = MyClass()
+        serialize_object = yaml_serialize.Serialize(myclass).get_attrs()
+        self.yaml_dump = yaml_serialize.YamlDump(serialize_object)
+
+    def test_yaml_dump_attrs(self):
+        assert hasattr(self.yaml_dump, "serialize_object")
