@@ -1,4 +1,4 @@
-# yaml-serialize
+# yaml_serialize
 
 ## Use
 ```py
