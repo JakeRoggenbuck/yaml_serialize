@@ -1,4 +1,5 @@
 # yaml_serialize
+A simple way to store python objects in yaml 
 
 ## Use
 ```py
