@@ -45,3 +45,18 @@ class Serialize:
         yaml_dump = YamlDump(self.object_dict)
         serialized_yaml = yaml_dump.generate_yaml()
         return serialized_yaml
+
+
+class Deserialize:
+    def read(self, _yaml, isfile=False):
+        if isfile:
+            _yaml = self.open_file(_yaml)
+        return self.read_string(_yaml)
+
+    def read_string(self, yaml_string):
+        yaml_dict = yaml.load(yaml_string, Loader=yaml.FullLoader)
+        return yaml_dict
+
+    def open_file(self, filename):
+        yaml_file = open(filename)
+        return yaml_file

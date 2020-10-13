@@ -1,4 +1,4 @@
-from src import yaml_serialize
+from yaml_serialize import yaml_serialize
 
 
 class MyObject:
@@ -21,3 +21,7 @@ serializer.write()
 
 # Write serialized object with custom name "MyCoolObject.yml"
 serializer.write("MyCoolObject.yml")
+
+des = yaml_serialize.Deserialize()
+new = des.read(my_serialized_object)
+print(new)
