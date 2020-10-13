@@ -25,6 +25,10 @@ serializer.write()
 
 # Write serialized object with custom name "MyCoolObject.yml"
 serializer.write("MyCoolObject.yml")
+
+des = yaml_serialize.Deserialize()
+new = des.read(my_serialized_object)
+print(new)
 ```
 
 ## Output
